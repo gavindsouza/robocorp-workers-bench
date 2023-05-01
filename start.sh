@@ -7,4 +7,3 @@ echo "Linking succeeded"
 echo "Starting the Agent..."
 ./bin/robocorp-workforce-agent-core start --instance-path /home/worker/instance
 
-

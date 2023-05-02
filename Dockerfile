@@ -38,4 +38,3 @@ RUN /home/worker/bin/rcc ht vars ./conda.yaml
 COPY ./start.sh start.sh
 
 ENTRYPOINT [ "./start.sh" ]
-

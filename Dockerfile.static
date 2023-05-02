@@ -37,4 +37,3 @@ RUN /home/worker/bin/robocorp-workforce-agent-core init --log-level TRACE --rcc-
 RUN /home/worker/bin/robocorp-workforce-agent-core link "$LINK_TOKEN" --name "$NAME" --instance-path /home/worker/instance
 
 ENTRYPOINT [ "/home/worker/bin/robocorp-workforce-agent-core", "start", "--instance-path", "/home/worker/instance" ]
-

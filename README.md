@@ -3,42 +3,48 @@
 Run `./worker-up.py` for available CLI options & help.
 
 ```bash
-usage: Robocorp Worker Wrapper [-h] [--build] [--name NAME] [--token TOKEN] [--group-token GROUP_TOKEN] [--dockerfile-location DOCKERFILE_LOCATION]
-                               [--image-name IMAGE_NAME] [--image-version IMAGE_VERSION]
+usage: Robocorp Worker Wrapper [-h] [--name NAME] [--token TOKEN] [--build] [--dockerfile-location DOCKERFILE_LOCATION] [--image-name IMAGE_NAME]
+                               [--image-version IMAGE_VERSION]
 
 Manage Robocorp self-hosted workers
 
 options:
   -h, --help            show this help message and exit
-  --build               Build the worker image
   --name NAME, -n NAME
   --token TOKEN, -t TOKEN
-  --group-token GROUP_TOKEN, -g GROUP_TOKEN
+  --build, -b           Build the worker image
   --dockerfile-location DOCKERFILE_LOCATION, -d DOCKERFILE_LOCATION
   --image-name IMAGE_NAME, -i IMAGE_NAME
   --image-version IMAGE_VERSION, -v IMAGE_VERSION
 
-Simplified Robocorp Worker Interface
+Simplified Robocorp Worker Management Interface
 ```
 
 Steps to build & spin up a self-hosted worker:
 
 1. Generate a `Dockerfile`
 
-`cp Dockerfile.dynamic Dockerfile`
+```bash
+cp Dockerfile.dynamic Dockerfile
+```
 
 1. Setup appropriate conda.yaml
 
-`cp {your-robot-conda} conda.yaml`
+```bash
+cp {your-robot-conda} conda.yaml
+```
 
 1. Build a worker image
 
-`./worker-up.py --build -i rc_dynamic -v 1.0`
+```bash
+./worker-up.py --build -i rc_dynamic -v 1.0
+```
 
 1. Spin up a worker using a single or group token
 
-`./worker-up.py -n {worker_name} -t {token}`
-
+```bash
+./worker-up.py -i rc_dynamic -v 1.0 -n {worker_name} -t {token}
+```
 
 #### Notes
 

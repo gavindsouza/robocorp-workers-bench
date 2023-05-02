@@ -6,7 +6,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         prog="Robocorp Worker Wrapper",
         description="Manage Robocorp self-hosted workers",
-        epilog="Simplified Robocorp Worker Interface",
+        epilog="Simplified Robocorp Worker Management Interface",
     )
     parser.add_argument("--name", "-n")
     parser.add_argument("--token", "-t")

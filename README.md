@@ -22,25 +22,25 @@ Simplified Robocorp Worker Management Interface
 
 Steps to build & spin up a self-hosted worker:
 
-1. Generate a `Dockerfile`
+* Generate a `Dockerfile`
 
 ```bash
 cp Dockerfile.dynamic Dockerfile
 ```
 
-1. Setup appropriate conda.yaml
+* Setup appropriate conda.yaml
 
 ```bash
 cp {your-robot-conda} conda.yaml
 ```
 
-1. Build a worker image
+* Build a worker image
 
 ```bash
 ./worker-up.py --build -i rc_dynamic -v 1.0
 ```
 
-1. Spin up a worker using a single or group token
+* Spin up a worker using a single or group token
 
 ```bash
 ./worker-up.py -i rc_dynamic -v 1.0 -n {worker_name} -t {token}

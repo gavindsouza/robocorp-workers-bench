@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 import argparse
+from pathlib import Path
 from subprocess import run
 
 if __name__ == "__main__":
@@ -18,7 +19,7 @@ if __name__ == "__main__":
     parser.add_argument("--image-version", "-v")
     args = parser.parse_args()
 
-    dockerfile_dir = args.dockerfile_location or "/root/robocorp"
+    dockerfile_dir = args.dockerfile_location or Path(__file__).parent.absolute()
     image_name = args.image_name or "robocorpapp_dynamic_container"
     image_version = args.image_version or "3.0"
 

@@ -20,30 +20,63 @@ options:
 Simplified Robocorp Worker Management Interface
 ```
 
+#### Steps to setup a Cluster of self-hosted workers
+
 Steps to build & spin up a self-hosted worker:
 
-* Generate a `Dockerfile`
+1. Generate a `Dockerfile` that outlines the worker environment
+
+I prefer using the dynamic workers for quickly spinning up workers that I can discard later.
 
 ```bash
 cp Dockerfile.dynamic Dockerfile
 ```
 
-* Setup appropriate conda.yaml
+2. Setup appropriate conda.yaml that outlines robot runtime context
+
+A conda file that resembles the environment your robots need. This ensures a suitable environment is generated while building the image to avoid any slow downs during executing robot processes.
 
 ```bash
 cp {your-robot-conda} conda.yaml
 ```
 
-* Build a worker image
+3. Build a worker image
+
+Build the common image which will be used for spinning up new workers.
 
 ```bash
 ./worker-up.py --build -i rc_dynamic -v 1.0
 ```
 
-* Spin up a worker using a single or group token
+4. Spin up a worker using a single or group token
+
+Each worker started translates to a container spun up using the image generated in the previous step.
 
 ```bash
 ./worker-up.py -i rc_dynamic -v 1.0 -n {worker_name} -t {token}
+```
+
+#### Gavin's Workflow
+
+1. Provision a new server & SSH to it
+1. `apt update && apt upgrade -y && apt install git`
+1. `curl https://get.docker.com/ | sh`
+1. `git clone https://github.com/switchup-de/robocorp-workers-bench robocorp`
+1. `cd robocorp`
+1. `./worker-up.py --build`
+1. `export ROBOCORP_GROUP_TOKEN=${NEW_TOKEN_GENERATED_IN_CONTROL_ROOM}`
+1. ```for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done```
+
+
+```bash
+# for copy pastin' - update token & worker count values (first & last lines)
+export ROBOCORP_GROUP_TOKEN=${NEW_TOKEN_GENERATED_IN_CONTROL_ROOM}
+apt update && apt upgrade -y && apt install git
+curl https://get.docker.com/ | sh
+git clone https://github.com/switchup-de/robocorp-workers-bench robocorp
+cd robocorp
+./worker-up.py --build
+for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done
 ```
 
 #### Notes

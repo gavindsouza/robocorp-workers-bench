@@ -82,7 +82,7 @@ if __name__ == "__main__":
             "DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef -y --allow-downgrades --allow-remove-essential --allow-change-held-packages upgrade -yqq",
             "apt-get install git",
             "curl https://get.docker.com/ | sh",
-            "git clone https://github.com/switchup-de/robocorp-workers-bench robocorp",
+            "git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp",
             "cd robocorp",
             "cp ./base/dynamic/Dockerfile .",
             "cp ./base/conda.yaml .",

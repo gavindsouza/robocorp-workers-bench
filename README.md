@@ -61,7 +61,7 @@ Each worker started translates to a container spun up using the image generated 
 1. Provision a new server & SSH to it
 1. `apt update && apt upgrade -y && apt install git`
 1. `curl https://get.docker.com/ | sh`
-1. `git clone https://github.com/switchup-de/robocorp-workers-bench robocorp`
+1. `git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp`
 1. `cd robocorp`
 1. `cp ./base/dynamic/Dockerfile .`
 1. `cp ./base/conda.yaml .`
@@ -75,7 +75,7 @@ Each worker started translates to a container spun up using the image generated 
 export ROBOCORP_GROUP_TOKEN=${NEW_TOKEN_GENERATED_IN_CONTROL_ROOM}
 apt update && apt upgrade -y && apt install git
 curl https://get.docker.com/ | sh
-git clone https://github.com/switchup-de/robocorp-workers-bench robocorp
+git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp
 cd robocorp
 cp ./base/dynamic/Dockerfile .
 cp ./base/conda.yaml .

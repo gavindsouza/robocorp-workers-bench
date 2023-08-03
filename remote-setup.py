@@ -50,7 +50,7 @@ if __name__ == "__main__":
         }
 
         resp = do_client.droplets.create(body=req)
-        print(resp)
+        print("Droplet created: ", resp)
 
         DROPLET_ID = resp["droplet"]["id"]
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 
         WORKERS_TO_DELETE = {
             w["id"]: w["name"]
-            for w in get_resp.json()["workers"]
+            for w in get_resp.json()["data"]
             if w["name"].startswith(f"{DELETE_SERIES}-")
         }
         print("Deleting workers: ", WORKERS_TO_DELETE)

@@ -29,7 +29,7 @@ Steps to build & spin up a self-hosted worker:
 I prefer using the dynamic workers for quickly spinning up workers that I can discard later.
 
 ```bash
-cp Dockerfile.dynamic Dockerfile
+cp ./base/dynamic/Dockerfile Dockerfile
 ```
 
 2. Setup appropriate conda.yaml that outlines robot runtime context
@@ -63,6 +63,8 @@ Each worker started translates to a container spun up using the image generated 
 1. `curl https://get.docker.com/ | sh`
 1. `git clone https://github.com/switchup-de/robocorp-workers-bench robocorp`
 1. `cd robocorp`
+1. `cp ./base/dynamic/Dockerfile .`
+1. `cp ./base/conda.yaml .`
 1. `./worker-up.py --build`
 1. `export ROBOCORP_GROUP_TOKEN=${NEW_TOKEN_GENERATED_IN_CONTROL_ROOM}`
 1. ```for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done```
@@ -75,6 +77,8 @@ apt update && apt upgrade -y && apt install git
 curl https://get.docker.com/ | sh
 git clone https://github.com/switchup-de/robocorp-workers-bench robocorp
 cd robocorp
+cp ./base/dynamic/Dockerfile .
+cp ./base/conda.yaml .
 ./worker-up.py --build
 for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done
 ```

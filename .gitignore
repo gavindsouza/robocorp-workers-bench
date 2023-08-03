@@ -1,0 +1,7 @@
+env
+*.pyc
+__pycache__/
+./Dockerfile
+./conda.yaml
+remote-setup.env
+.vscode

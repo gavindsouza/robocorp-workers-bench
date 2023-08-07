@@ -78,15 +78,14 @@ if __name__ == "__main__":
             f"root@{DROPLET_IP}",
         ]
         INIT_COMMANDS = [
-            "apt-get update",
-            "DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef -y --allow-downgrades --allow-remove-essential --allow-change-held-packages upgrade -yqq",
-            "apt-get install git",
             "curl https://get.docker.com/ | sh",
+            "apt-get install git",
             "git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp",
             "cd robocorp",
             "cp ./base/dynamic/Dockerfile .",
             "cp ./base/conda.yaml .",
             "./worker-up.py --build",
+            "DEBIAN_FRONTEND=noninteractive apt-get -o DPkg::Lock::Timeout=60 -o Dpkg::Options::=--force-confold -o Dpkg::Options::=--force-confdef -y --allow-downgrades --allow-remove-essential --allow-change-held-packages upgrade -yqq",
         ]
         SETUP_COMMANDS = [
             "cd robocorp",

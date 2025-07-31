@@ -64,7 +64,6 @@ Each worker started translates to a container spun up using the image generated 
 1. `git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp`
 1. `cd robocorp`
 1. `cp ./base/dynamic/Dockerfile .`
-1. `cp ./base/conda.yaml .`
 1. `./worker-up.py --build`
 1. `export ROBOCORP_GROUP_TOKEN=${NEW_TOKEN_GENERATED_IN_CONTROL_ROOM}`
 1. ```for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done```
@@ -78,13 +77,12 @@ curl https://get.docker.com/ | sh
 git clone https://github.com/gavindsouza/robocorp-workers-bench robocorp
 cd robocorp
 cp ./base/dynamic/Dockerfile .
-cp ./base/conda.yaml .
 ./worker-up.py --build
 for i in `seq 1 N`; do   ./worker-up.py -n "a-$i" -t $ROBOCORP_GROUP_TOKEN; done
 ```
 
 #### Notes
 
-Copy the `conda.yaml` from the targetted robot to this folder. It will be used in the container image building process.
+~Copy the `conda.yaml` from the targetted robot to this folder. It will be used in the container image building process.~
 
 Added the `--no-cache` during the image building because we don't want to cache the `rcc` environment creation. Alternatively, we can add the `ADD` directive to the pypi & github URLs to do so automatically.

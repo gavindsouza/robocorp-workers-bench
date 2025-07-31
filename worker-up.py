@@ -17,11 +17,23 @@ if __name__ == "__main__":
     parser.add_argument("--dockerfile-location", "-d")
     parser.add_argument("--image-name", "-i")
     parser.add_argument("--image-version", "-v")
+    parser.add_argument(
+        "--use-robocorp-cache",
+        "-c",
+        help="Mount Robocorp cache directory",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     dockerfile_dir = args.dockerfile_location or Path(__file__).parent.absolute()
     image_name = args.image_name or "robocorpapp_dynamic_container"
-    image_version = args.image_version or "3.0"
+    image_version = args.image_version or "4.0"
+
+    if args.use_robocorp_cache:
+        print("Using Robocorp cache directory: /opt/robocorp_cache")
+        mount_paths = "-v /opt/robocorp_cache:/home/worker/.robocorp"
+    else:
+        mount_paths = ""
 
     if args.build:
         build_command = f"docker image build --tag {image_name}:{image_version} {dockerfile_dir} --no-cache"
@@ -32,6 +44,7 @@ if __name__ == "__main__":
             f"docker run -dit "
             f"-e NAME={args.name} -e LINK_TOKEN={args.token} "
             f"--restart unless-stopped --name {args.name} "
+            f"{mount_paths} "
             f"{image_name}:{image_version}"
         )
         run(exec_command, shell=True)

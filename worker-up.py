@@ -31,7 +31,10 @@ if __name__ == "__main__":
 
     if args.use_robocorp_cache:
         print("Using Robocorp cache directory: /opt/robocorp_cache")
-        mount_paths = "-v /opt/robocorp_cache:/home/worker/.robocorp"
+        mount_paths = (
+            "-v /opt/robocorp_cache:/home/worker/.robocorp "
+            "--mount type=tmpfs,dst=/home/worker/.robocorp/temp,tmpfs-size=500000000 "
+        )
     else:
         mount_paths = ""
 
